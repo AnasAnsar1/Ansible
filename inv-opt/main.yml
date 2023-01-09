@@ -1,0 +1,13 @@
+---
+- name: Intalling Utils
+  hosts: all
+  tasks:
+    - name: installing Utils
+      package:
+        - name: "{{ item }}"
+          state: present
+      loop: "{{ packages }}"
+      become: yes
+    - name: debug variable
+      debug:
+        var: purpose

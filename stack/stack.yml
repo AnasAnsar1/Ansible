@@ -1,0 +1,23 @@
+---
+- name: Installing stack
+  hosts: all
+  become: yes
+  tasks:
+    - name: Installing apache
+      ansible.builtin.package:
+        name: {{apache_package_name}}
+        state: present
+    - name: Installing php
+      ansible.builtin.package:
+        name: {{php_package_name}}
+        state: present
+    - name: Creating info.php
+      copy:
+        src: info.php
+        dest: /var/www/html/info.php
+    - name: enable and start httpd
+      systemd:
+        enabled: yes
+        state: started
+      when: ansible_facts['distribution'] == CentOS
+    

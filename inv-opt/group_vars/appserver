@@ -1,0 +1,6 @@
+---
+packages:
+  - get
+  - nano
+  - tree
+  - net-tools

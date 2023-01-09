@@ -1,0 +1,10 @@
+---
+- name: Installing utils
+  hosts: all
+  tasks:
+    - name: Installing Utils
+      package:
+        name: "{{ item }}"
+        state: present
+      become: yes
+      loop: "{{ packages }}"
